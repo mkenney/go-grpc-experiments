@@ -1,0 +1,16 @@
+syntax = "proto3";
+package test_service;
+message GUID {
+    string Guid = 1;
+}
+message ValidationResult {
+    bool IsValid = 1;
+}
+message SessionToken {
+    string Token = 1;
+}
+service RouteGuide {
+    rpc GenerateToken(GUID) returns (SessionToken) {}
+    rpc ValidateToken(SessionToken) returns (ValidationResult) {}
+    rpc RefreshToken(SessionToken) returns (SessionToken) {}
+}
